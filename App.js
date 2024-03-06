@@ -6,10 +6,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import styles, { vH } from './assets/styles';
 
+// import svgs
+import HomeActiveIcon from "./assets/icons/home_active_icon.svg";
+import HomeIcon from "./assets/icons/home_icon.svg";
+import FavoriteActiveIcon from "./assets/icons/favorite_active_icon.svg";
+import FavoriteIcon from "./assets/icons/favorite_icon.svg";
+import MoviesIcon from "./assets/icons/movies_icon.svg";
+import MoviesActiveIcon from "./assets/icons/movies_active_icon.svg";
+import ProfileIcon from "./assets/icons/profile_icon.svg";
+import ProfileActiveIcon from "./assets/icons/profile_active_icon.svg";
 // import screens
-import Home from './screens/componenets/Home';
-import Favorite from './screens/componenets/Favorite';
-
+import Home from './screens/Home';
+import Favorite from './screens/Favorite';
+import Movies from './screens/Movies';
+import Profile from './screens/Profile';
 // navigation instances
 const Stack = createNativeStackNavigator();
 let Tab = createBottomTabNavigator();
@@ -22,18 +32,17 @@ const TabsNavigator = () => {
         tabBarStyle: {
           height: vH(11),
 
-          backgroundColor: '#fff',
+          backgroundColor: '#252C3E',
           width: "100%",
-          shadowColor: '#dedbdb',
+          shadowColor: '#000',
           shadowOffset: { width: 0, height: 0 },
-          shadowOpacity: 1,
-          shadowRadius: 8,
+          shadowOpacity: 0.5,
 
           elevation: 5,
           //borderWidth : 0
           borderTopWidth: 0,
-          borderTopLeftRadius: 12,
-          borderTopRightRadius: 12,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
 
         },
         tabBarShowLabel: false,
@@ -52,11 +61,11 @@ const TabsNavigator = () => {
               <View style={{ marginLeft: 20 }}>
                 <View style={[styles.icon_bottom_nav, focused ? (styles.active_nav) : ""]} >
 
-                  {/* {
+                  {
                     !focused
-                      ? <Home width={20} height={20} />
-                      : <HomeActive width={20} height={20} />
-                  } */}
+                      ? <HomeIcon  width={20} height={20} />
+                      : <HomeActiveIcon width={20} height={20} />
+                  }
 
                 </View>
                 <Text style={[styles.text_tab_bottom, focused ? (styles.text_tab_bottom_active) : ""]} >Home</Text>
@@ -77,11 +86,13 @@ const TabsNavigator = () => {
               <View style={{ marginLeft: 20 }}>
                 <View style={[styles.icon_bottom_nav, focused ? (styles.active_nav) : ""]} >
 
-                  {/* {
+                  {
                     !focused
-                      ? <Home width={20} height={20} />
-                      : <HomeActive width={20} height={20} />
-                  } */}
+                    
+
+                      ? <FavoriteIcon width={20} height={20} />
+                      : <FavoriteActiveIcon width={20} height={20} />
+                  }
 
                 </View>
                 <Text style={[styles.text_tab_bottom, focused ? (styles.text_tab_bottom_active) : ""]} >Favorite</Text>
@@ -90,7 +101,60 @@ const TabsNavigator = () => {
           },
         }}
       />
-      {/* Favorite */}
+      <Tab.Screen
+        name="Movies"
+        component={Movies}
+        options={{
+
+          tabBarLabel: 'Movies',
+          showLabel: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <View style={{ marginLeft: 20 }}>
+                <View style={[styles.icon_bottom_nav, focused ? (styles.active_nav) : ""]} >
+
+                  {
+                    !focused
+                    
+
+                      ? <MoviesIcon width={20} height={20} />
+                      : <MoviesActiveIcon width={20} height={20} />
+                  }
+
+                </View>
+                <Text style={[styles.text_tab_bottom, focused ? (styles.text_tab_bottom_active) : ""]} >Movies</Text>
+              </View>)
+
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+
+          tabBarLabel: 'Profile',
+          showLabel: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <View style={{ marginLeft: 20 }}>
+                <View style={[styles.icon_bottom_nav, focused ? (styles.active_nav) : ""]} >
+
+                  {
+                    !focused
+                    
+
+                      ? <ProfileIcon width={20} height={20} />
+                      : <ProfileActiveIcon width={20} height={20} />
+                  }
+
+                </View>
+                <Text style={[styles.text_tab_bottom, focused ? (styles.text_tab_bottom_active) : ""]} >Profile</Text>
+              </View>)
+
+          },
+        }}
+      />
     </Tab.Navigator>
   )
 }
